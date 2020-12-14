@@ -93,3 +93,61 @@ cookieDb.updateLogInfo = (user_id) => {
     });
 };
 
+cookieDb.getAllCookie = () => {
+
+    // console.log( user_id);
+    return new Promise((resolve, reject) => {
+        dbPool.query(`select * from recipes order by recipe_id desc`, (err, results) => {
+            if (err) {
+                return reject(err);
+            }
+            return resolve(results);
+        });
+    });
+};
+
+cookieDb.addCookie = (cookie) => {
+
+    // console.log( user_id);
+    return new Promise((resolve, reject) => {
+        dbPool.query(`insert into recipes (user_id,recipe_name,recipe_desc) values(?,?,?)`, [cookie.user_id, cookie.recipe_name, cookie.recipe_desc], (err, results) => {
+            if (err) {
+                return reject(err);
+            }
+            return resolve(results);
+        });
+    });
+};
+
+
+cookieDb.getLogHistory = (user_id) => {
+
+    // console.log( user_id);
+    return new Promise((resolve, reject) => {
+        dbPool.query(`select * from loginfo where user_id = ? order by loginfo_id desc`, [user_id], (err, results) => {
+            if (err) {
+                return reject(err);
+            }
+            return resolve(results);
+        });
+    });
+};
+
+cookieDb.getRating = (recipe_id, type) => {
+
+    // console.log(recipe_id);
+    // console.log(type);
+
+    return new Promise((resolve, reject) => {
+        dbPool.query(`select count(rating_id) as rating from ratings where recipe_id = ? and rating = ?`, [recipe_id, type], (err, results) => {
+            if (err) {
+                return reject(err);
+            }
+            return resolve(results);
+        });
+    });
+};
+
+
+
+module.exports = cookieDb;
