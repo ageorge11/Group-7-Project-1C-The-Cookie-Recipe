@@ -1,0 +1,221 @@
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="icon" type="image\png" sizes="16x16" href="img/favicon-32x32.png" />
+        <title>Welcome to My Cookies</title>
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous" />
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
+
+        <link rel="stylesheet" href="css\home.css" />
+        <script src="js\home.js"></script>
+    </head>
+    <body>
+        <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
+            <a class="navbar-brand" href="#">
+                <img src="./img/android-chrome-192x192.png" alt="" width="35" height="35" class="d-inline-block align-top" />
+                My Cookies
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+                <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" data-toggle="modal" data-target="#addNewModal">Add New Recipe</a>
+                    </li>
+                </ul>
+                <!-- <form class="form-inline my-2 my-lg-0">
+                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" />
+                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">
+                        Search
+                    </button>
+                </form> -->
+
+                <ul class="navbar-nav my-2 my-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" data-toggle="modal" data-target="#profileModal">Profile</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#" onclick="logout()">Logout</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+
+        <div class="jumbotron">
+            <div class="container">
+                <h1 class="display-3">
+                    Welcome
+                    <span id="userName" class="userName"></span>
+                </h1>
+                <p class="lead">The best place to find the Nicest Cookies :)</p>
+            </div>
+        </div>
+
+        <div class="container cookiesList">
+          <!-- <div class="card  mb-3">
+            <div class="card-header"> cookie.recipe_name </div>
+            <div class="card-body">
+            <h5 class="card-title">Description</h5>
+            <p class="card-text">
+            cookie.recipe_desc
+            </p>
+            
+            <div class="card-footer">
+            <div class="left">
+            <img src="./img/like.jpg" onclick="like(12)"/><span>10</span>
+            <img src="./img/dislike.jpg" onclick="dislike(15)"/><span>12</span>
+            </div>
+            <div class="right">
+            <span>Created by <span> userName </span> On <span> jsDate </span> </span>
+            </div>
+            </div>
+            </div>
+            </div> -->
+        </div>
+
+        <div class="modal fade" id="addNewModal" tabindex="-1" role="dialog" aria-labelledby="addNewModal" aria-hidden="true">
+            <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h3 class="modal-title" id="myModalLabel">Add New Cookie Recipe</h3>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div>
+                            <form onsubmit="addRecipes(event)">
+                                <div class="container">
+                                    <!-- <h2 class="text-center">Add New Cookie Recipe</h2> -->
+                                    <!-- <p>Please fill in this form to create an account.</p>
+                <hr />
+       -->
+                                    <div class="form-group">
+                                        <label for="recipe_name"><b>Recipe Name</b></label>
+                                        <input type="text" class="form-control" placeholder="Enter Recipe Name" name="recipe_name" id="recipe_name" required />
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="recipe_desc"><b>Recipe Description</b></label>
+                                        <input type="text" class="form-control" placeholder="Enter Recipe Description" name="recipe_desc" id="recipe_desc" required />
+                                    </div>
+
+                                    <div class="text-center">
+                                        <button class="btn btn-primary btn-lg" id="addRecipe">
+                                            Add Recipe
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <!-- <button type="button" class="btn btn-default" data-dismiss="modal">
+              Close
+            </button> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade" id="profileModal" tabindex="-1" role="dialog" aria-labelledby="profileModal" aria-hidden="true">
+            <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h3 class="modal-title" id="myModalLabel">User Profile</h3>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                      <form onsubmit="updateUserInfo(event)">
+                        <div class="container">        
+                            <div class="form-group">
+                                <label for="profname"><b>First Name</b></label>
+                                <input type="text" class="form-control" placeholder="Enter middle Name" name="profname" id="profname" required />
+                            </div>
+        
+                            <div class="form-group">
+                                <label for="prolname"><b>Last Name</b></label>
+                                <input type="text" class="form-control" placeholder="Enter Last Name" name="prolname" id="prolname" required />
+                            </div>
+        
+                            <div class="form-group">
+                                <label for="prouserName"><b>User Name </b></label>
+                                <input type="text" class="form-control" placeholder="Enter User name" name="prouserName" id="prouserName" required />
+                            </div>
+        
+                            <div class="form-group">
+                                <label for="proemail"><b>Email</b></label>
+                                <input type="text" class="form-control" placeholder="Enter Email" name="proemail" id="proemail" required />
+                            </div>
+        
+                            <!-- <div class="form-group">
+                                <label for="psw"><b>Password</b></label>
+                                <input type="password" class="form-control" placeholder="Enter Password" name="password" id="psw" required />
+                            </div>
+        
+                            <div class="form-group">
+                                <label for="pswRepeat"><b>Repeat Password</b></label>
+                                <input type="password" class="form-control" placeholder="Repeat Password" name="pswRepeat" id="pswRepeat" required />
+                            </div> -->
+        
+                            <hr />
+                            
+                            <div class="text-center">
+                                <button class="btn btn-primary btn-lg" id="updateUser" style="display: none;">
+                                    Update User
+                                </button>
+                            </div>
+                        </div>
+                        
+                    </form>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-primary" id="editCancelBtn" onclick="editUserCancel()" style="display: none;">
+                        Cancel
+                      </button>
+                      <button type="button" class="btn btn-primary" id="editBtn" onclick="editUser()">
+                        Edit
+                      </button>
+                      <button type="button" class="btn btn-default" data-dismiss="modal">
+                            Close
+                      </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <div class="container">
+              <div class=" footer-link font-weight-bold mt-2 ">
+                <a data-toggle="modal" data-target="#logHistoryModal">Last Login : <span id="lastLogin"></span></a>
+            </div>
+          </div>
+        </div>
+
+        <div class="modal fade" id="logHistoryModal" tabindex="-1" role="dialog" aria-labelledby="logHistoryModal" aria-hidden="true">
+            <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h3 class="modal-title" id="myModalLabel">Login History</h3>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body" id="logHistoryBody"></div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">
+                            Close
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
