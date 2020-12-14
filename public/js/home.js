@@ -2,6 +2,7 @@
 var currentUser = {};
 var logHistory = {};
 
+
 $(document).ready(function () {
 
     var user = JSON.parse(localStorage.getItem("user"));
@@ -13,8 +14,12 @@ $(document).ready(function () {
         displayCookies();
 
         logHistory = getLogHistory(user.user_id);
+        // console.log("date time : ");
         //console.log(logHistory[0].logtime);
-        $("#lastLogin").html(toDate(logHistory[0].logtime, 2));
+        var date = logHistory[1].logtime;
+        // console.log(newDate(date));
+
+        $("#lastLogin").html(toDate(date, 2));
         addlogHistory();
 
         $("#profname").val(currentUser.first_name);
@@ -44,23 +49,27 @@ function setUserName(userName) {
 }
 
 function toDate(date, mode) {
-
-    var dateParts = date.split("-");
-    var timeParts = dateParts[2].split("T")[1].split(":");
+    date = toLocalDate(date).toString();  
+    var dateParts = date.split(" ");
 
     if (mode == 1) {
-        var jsDate = dateParts[0] + "-" + (dateParts[1] - 1) + "-" + dateParts[2].substr(0, 2);
-
+        var jsDate = dateParts[2] + "-" + dateParts[1] + "-" + dateParts[3] + "";
         return jsDate
 
     } else if (mode == 2) {
-        var jsDate = dateParts[0] + "-" + (dateParts[1] - 1) + "-" + dateParts[2].substr(0, 2) + " at " + timeParts[0] + ":" + timeParts[1]
-
+        var jsDate = dateParts[2] + "-" + dateParts[1] + "-" + dateParts[3] + " @ " + dateParts[4];
         return jsDate;
     }
-
     return date;
 }
+
+function toLocalDate(date) {
+    var d = new Date(date);
+    var offset = (new Date().getTimezoneOffset() / 60) * -1;
+    var n = new Date(d.getTime() + offset);
+    return n;
+};
+
 function logout() {
     localStorage.removeItem("user");
     window.location.href = "index.html";
