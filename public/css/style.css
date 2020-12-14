@@ -1,0 +1,30 @@
+body {
+  background-image: url("../img/bg2.jpg");
+}
+
+.login,
+.register,
+.forgotPass {
+  background-color: antiquewhite;
+  padding-top: 30px;
+  border: 1px solid black;
+  border-radius: 25px;
+  width: 30%;
+  margin-top: 10%;
+  opacity: 96%;
+}
+
+#loginbtn,
+#FPbtn,
+#registerbtn {
+  margin-bottom: 20px;
+}
+
+input {
+  margin-left: 10px;
+}
+
+.alert {
+  display: none;
+}
+
