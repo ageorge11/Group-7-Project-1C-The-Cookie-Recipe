@@ -83,16 +83,5 @@ select * from loginfo where user_id = 8 order by loginfo_id desc;
 
 --------------------------------------------------------------------------------
 
-Create table comments (comment_id BIGINT(8)  NOT NULL AUTO_INCREMENT,user_id BIGINT(8), recipe_id BIGINT(8),comment text,
-                        PRIMARY KEY ( comment_id ), FOREIGN KEY (user_id) REFERENCES users(user_id), FOREIGN KEY (recipe_id) REFERENCES recipes(recipe_id));
-                        
-drop table comments;
-
-                    
--- need tables
-    -- recipes -> recipe_id(pk),user_id(fk),post_date, recipe_name, recipe_desc, 
-    -- comments -> comment_id(pk),user_id(fk), recipe_id(fk),comment
-    -- ratings  ->rating_id(pk), user_id(fk), recipe_id(fk), rating_value
-    -- logInfo -> loginfo_id(pk), user_id(fk), timestamp
     
     
